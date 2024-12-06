@@ -1,0 +1,19 @@
+# Use root/examplerootpass as user/password credentials
+version: '3.9'
+
+services:   
+  spring:
+    build: ./todolist
+    container_name: todo_list_spring
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    image: es_107647
+    expose:
+      - 8080
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
