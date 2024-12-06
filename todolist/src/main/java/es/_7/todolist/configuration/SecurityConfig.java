@@ -37,8 +37,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable) //NOSONAR
                 .authorizeHttpRequests(
                         request -> request
-                                .requestMatchers("/api/token").permitAll()
+                                .requestMatchers("/api/token/*").permitAll()
                                 .requestMatchers("/api/tasks").permitAll()
+                                .requestMatchers("/api/tasks/*").permitAll()
+                                .requestMatchers("/api/tasks/priority/*").permitAll()
                                 .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

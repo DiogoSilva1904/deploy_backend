@@ -8,12 +8,13 @@ import lombok.Setter;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "APPUSER")
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +25,9 @@ public class AppUser {
 
     @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
+    private String subId;
 
     @OneToMany(mappedBy = "user")
     private List<Task> tasks;
